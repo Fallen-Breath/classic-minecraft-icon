@@ -20,7 +20,7 @@
 
 package me.fallenbreath.classicminecrafticon.mixins;
 
-import me.fallenbreath.classicminecrafticon.ClassMinecraftIconStorage;
+import me.fallenbreath.classicminecrafticon.ClassicMinecraftIconStorage;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -55,8 +55,8 @@ public abstract class MinecraftClientMixin
 	)
 	private void bringTheClassicCraftingTableIconBack_general(Args args)
 	{
-		args.set(0, ClassMinecraftIconStorage.getResource("icon_16x16.png"));
-		args.set(1, ClassMinecraftIconStorage.getResource("icon_32x32.png"));
+		args.set(0, ClassicMinecraftIconStorage.getResource("icon_16x16.png"));
+		args.set(1, ClassicMinecraftIconStorage.getResource("icon_32x32.png"));
 	}
 
 	//#if MC >= 11902
@@ -73,7 +73,7 @@ public abstract class MinecraftClientMixin
 	//$$ )
 	//$$ private void bringTheClassicCraftingTableIconBack_mac(Args args)
 	//$$ {
-	//$$ 	args.set(0, ClassMinecraftIconStorage.getResource("minecraft.icns"));
+	//$$ 	args.set(0, ClassicMinecraftIconStorage.getResource("minecraft.icns"));
 	//$$ }
 	//#endif
 }

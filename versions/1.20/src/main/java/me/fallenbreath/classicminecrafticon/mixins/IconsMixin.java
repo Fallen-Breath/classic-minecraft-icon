@@ -20,7 +20,7 @@
 
 package me.fallenbreath.classicminecrafticon.mixins;
 
-import me.fallenbreath.classicminecrafticon.ClassMinecraftIconStorage;
+import me.fallenbreath.classicminecrafticon.ClassicMinecraftIconStorage;
 import net.minecraft.client.util.Icons;
 import net.minecraft.resource.InputSupplier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -41,12 +41,12 @@ public abstract class IconsMixin
 	@Inject(method = "getIcons", at = @At("HEAD"), cancellable = true)
 	private void bringTheClassicCraftingTableIconBack_general(CallbackInfoReturnable<List<InputSupplier<InputStream>>> cir)
 	{
-		cir.setReturnValue(ClassMinecraftIconStorage.getAllPngResources());
+		cir.setReturnValue(ClassicMinecraftIconStorage.getAllPngResources());
 	}
 
 	@Inject(method = "getMacIcon", at = @At("HEAD"), cancellable = true)
 	private void bringTheClassicCraftingTableIconBack_mac( CallbackInfoReturnable<InputSupplier<InputStream>> cir)
 	{
-		cir.setReturnValue(ClassMinecraftIconStorage.getResource("minecraft.icns"));
+		cir.setReturnValue(ClassicMinecraftIconStorage.getResource("minecraft.icns"));
 	}
 }

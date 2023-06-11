@@ -27,6 +27,6 @@ public class ClassicMinecraftIconMod implements ModInitializer
 	@Override
 	public void onInitialize()
 	{
-		ClassMinecraftIconStorage.init();
+		ClassicMinecraftIconStorage.init();
 	}
 }

@@ -34,7 +34,7 @@ import java.util.Map;
 //$$ import net.minecraft.resource.InputSupplier;
 //#endif
 
-public class ClassMinecraftIconStorage
+public class ClassicMinecraftIconStorage
 {
 	private static final String RESOURCES_ROOT = "assets/classicminecrafticon/icons/";
 	private static final Map<String, byte[]> STORAGE = Maps.newLinkedHashMap();
@@ -53,7 +53,7 @@ public class ClassMinecraftIconStorage
 	private static void loadResource(String path, boolean isPng)
 	{
 		String fullPath = RESOURCES_ROOT + path;
-		ClassLoader classLoader = ClassMinecraftIconStorage.class.getClassLoader();
+		ClassLoader classLoader = ClassicMinecraftIconStorage.class.getClassLoader();
 		try (InputStream stream = classLoader.getResourceAsStream(fullPath))
 		{
 			if (stream == null)
@@ -95,7 +95,7 @@ public class ClassMinecraftIconStorage
 	//$$ public static List<InputSupplier<InputStream>> getAllPngResources()
 	//$$ {
 	//$$ 	return PNG_PATHS.stream().
-	//$$ 			map(ClassMinecraftIconStorage::getResource).
+	//$$ 			map(ClassicMinecraftIconStorage::getResource).
 	//$$ 			toList();
 	//$$ }
 	//#endif
