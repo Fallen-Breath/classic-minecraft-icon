@@ -1,7 +1,7 @@
-## fabric-mod-template
+## classic-minecraft-icon
 
-[![License](https://img.shields.io/github/license/Fallen-Breath/fabric-mod-template.svg)](http://www.gnu.org/licenses/lgpl-3.0.html)
-![workflow](https://github.com/Fallen-Breath/fabric-mod-template/actions/workflows/gradle.yml/badge.svg)
+[![License](https://img.shields.io/github/license/Fallen-Breath/classic-minecraft-icon.svg)](http://www.gnu.org/licenses/lgpl-3.0.html)
+![workflow](https://github.com/Fallen-Breath/classic-minecraft-icon/actions/workflows/gradle.yml/badge.svg)
 
 fallen's fabric mod template
 

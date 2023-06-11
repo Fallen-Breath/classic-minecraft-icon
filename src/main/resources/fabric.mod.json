@@ -4,25 +4,25 @@
   "version": "${version}",
 
   "name": "${name}",
-  "description": "",
+  "description": "Bring back the classic crafting table window icon of Minecraft",
   "authors": [
     "Fallen_Breath"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/",
-    "sources": "https://github.com/"
+    "sources": "https://github.com/Fallen-Breath/classic-minecraft-icon"
   },
 
-  "icon": "assets/template_mod/icon.png",
+  "icon": "assets/classicminecrafticon/mod_icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
-      "me.fallenbreath.template_mod.TemplateMod"
+      "me.fallenbreath.classicminecrafticon.ClassicMinecraftIconMod"
     ]
   },
   "mixins": [
-    "template_mod.mixins.json"
+    "classic-minecraft-icon.mixins.json"
   ],
 
   "depends": {

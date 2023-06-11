@@ -1,10 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.fallenbreath.template_mod.mixins",
+  "package": "me.fallenbreath.classicminecrafticon.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MinecraftServerMixin"
+    "IconsMixin",
+    "MinecraftClientMixin"
   ],
   "client": [
   ],
