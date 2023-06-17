@@ -22,6 +22,7 @@ package me.fallenbreath.classicminecrafticon.mixins;
 
 import me.fallenbreath.classicminecrafticon.ClassicMinecraftIconStorage;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.resource.InputSupplier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -29,59 +30,49 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import java.io.InputStream;
 
 /**
- * The implementation for mc (~, 1.19.3)
+ * The implementation for mc [1.19.3, 1.20)
  * See:
- * - {@link MinecraftClientMixin} in subproject 1.19.3-fabric for implementation for mc [1.19.3, 1.20)
+ * - {@link MinecraftClientMixin} in subproject 1.15.2-fabric for implementation for mc (~, 1.19.3)
  * - {@link IconsMixin} in subproject 1.20.1-fabric for implementation for mc [1.20, ~)
  */
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin
 {
 	@ModifyArg(
-			//#if MC >= 11500
 			method = "<init>",
-			//#else
-			//$$ method = "init",
-			//#endif
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
+					target = "Lnet/minecraft/client/util/Window;setIcon(Lnet/minecraft/resource/InputSupplier;Lnet/minecraft/resource/InputSupplier;)V"
 			),
 			index = 0
 	)
-	private InputStream bringTheClassicCraftingTableIconBack_general16x(InputStream icon16)
+	private InputSupplier<InputStream> bringTheClassicCraftingTableIconBack_general16x(InputSupplier<InputStream> icon16)
 	{
 		return ClassicMinecraftIconStorage.getResource("icon_16x16.png");
 	}
 
 	@ModifyArg(
-			//#if MC >= 11500
 			method = "<init>",
-			//#else
-			//$$ method = "init",
-			//#endif
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
+					target = "Lnet/minecraft/client/util/Window;setIcon(Lnet/minecraft/resource/InputSupplier;Lnet/minecraft/resource/InputSupplier;)V"
 			),
 			index = 1
 	)
-	private InputStream bringTheClassicCraftingTableIconBack_general32x(InputStream icon32)
+	private InputSupplier<InputStream> bringTheClassicCraftingTableIconBack_general32x(InputSupplier<InputStream> icon32)
 	{
 		return ClassicMinecraftIconStorage.getResource("icon_32x32.png");
 	}
 
-	//#if MC >= 11902
-	//$$ @ModifyArg(
-	//$$ 		method = "<init>",
-	//$$ 		at = @At(
-	//$$ 				value = "INVOKE",
-	//$$ 				target = "Lnet/minecraft/client/util/MacWindowUtil;setApplicationIconImage(Ljava/io/InputStream;)V"
-	//$$ 		)
-	//$$ )
-	//$$ private InputStream bringTheClassicCraftingTableIconBack_mac(InputStream iconMac)
-	//$$ {
-	//$$ 	return ClassicMinecraftIconStorage.getResource("minecraft.icns");
-	//$$ }
-	//#endif
+	@ModifyArg(
+			method = "<init>",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/client/util/MacWindowUtil;setApplicationIconImage(Lnet/minecraft/resource/InputSupplier;)V"
+			)
+	)
+	private InputSupplier<InputStream> bringTheClassicCraftingTableIconBack_mac(InputSupplier<InputStream> iconMac)
+	{
+		return ClassicMinecraftIconStorage.getResource("minecraft.icns");
+	}
 }

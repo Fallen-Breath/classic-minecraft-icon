@@ -33,7 +33,9 @@ import java.util.List;
 
 /**
  * The implementation for mc [1.20, ~)
- * See {@link MinecraftClientMixin} in subproject 1.15.2 for implementation for mc (~, 1.20)
+ * See:
+ * - {@link MinecraftClientMixin} in subproject 1.15.2-fabric for implementation for mc (~, 1.19.3)
+ * - {@link MinecraftClientMixin} in subproject 1.19.3-fabric for implementation for mc [1.19.3, 1.20)
  */
 @Mixin(Icons.class)
 public abstract class IconsMixin
