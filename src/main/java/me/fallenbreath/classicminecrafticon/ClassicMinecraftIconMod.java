@@ -20,6 +20,9 @@
 
 package me.fallenbreath.classicminecrafticon;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 //#if FORGE
 //$$ @net.minecraftforge.fml.common.Mod("classic_minecraft_icon")
 //#endif
@@ -28,6 +31,8 @@ public class ClassicMinecraftIconMod
 		implements net.fabricmc.api.ModInitializer
 		//#endif
 {
+	public static final Logger LOGGER = LogManager.getLogger();
+
 	//#if FABRIC
 	@Override public void onInitialize()
 	//#elseif FORGE

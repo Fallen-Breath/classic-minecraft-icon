@@ -47,12 +47,15 @@ public class ClassicMinecraftIconStorage
 		{
 			return;
 		}
+
 		loadResource("icon_16x16.png", true);
 		loadResource("icon_32x32.png", true);
 		loadResource("icon_48x48.png", true);
 		loadResource("icon_128x128.png", true);
 		loadResource("icon_256x256.png", true);
 		loadResource("minecraft.icns", false);
+
+		ClassicMinecraftIconMod.LOGGER.info("{} initialized", ClassicMinecraftIconStorage.class.getSimpleName());
 		inited = true;
 	}
 
