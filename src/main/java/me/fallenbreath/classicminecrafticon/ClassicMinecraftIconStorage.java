@@ -39,15 +39,21 @@ public class ClassicMinecraftIconStorage
 	private static final String RESOURCES_ROOT = "assets/classicminecrafticon/icons/";
 	private static final Map<String, byte[]> STORAGE = Maps.newLinkedHashMap();
 	private static final List<String> PNG_PATHS = Lists.newArrayList();
+	private static boolean inited = false;
 
-	public static void init()
+	public synchronized static void init()
 	{
+		if (inited)
+		{
+			return;
+		}
 		loadResource("icon_16x16.png", true);
 		loadResource("icon_32x32.png", true);
 		loadResource("icon_48x48.png", true);
 		loadResource("icon_128x128.png", true);
 		loadResource("icon_256x256.png", true);
 		loadResource("minecraft.icns", false);
+		inited = true;
 	}
 
 	private static void loadResource(String path, boolean isPng)
@@ -79,6 +85,7 @@ public class ClassicMinecraftIconStorage
 	public static InputStream getResource(String path)
 	//#endif
 	{
+		init();
 		byte[] data = STORAGE.get(path);
 		if (data == null)
 		{
@@ -94,6 +101,7 @@ public class ClassicMinecraftIconStorage
 	//#if MC >= 12000
 	//$$ public static List<InputSupplier<InputStream>> getAllPngResources()
 	//$$ {
+	//$$ 	init();
 	//$$ 	return PNG_PATHS.stream().
 	//$$ 			map(ClassicMinecraftIconStorage::getResource).
 	//$$ 			toList();

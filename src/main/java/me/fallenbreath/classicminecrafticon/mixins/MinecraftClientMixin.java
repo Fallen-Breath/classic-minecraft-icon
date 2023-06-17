@@ -27,10 +27,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-//#if MC >= 11902
-//$$ import org.spongepowered.asm.mixin.injection.ModifyArg;
-//#endif
-
 /**
  * The implementation for mc (~, 1.20)
  * See {@link IconsMixin} in subproject 1.20 for implementation for mc [1.20, ~)
