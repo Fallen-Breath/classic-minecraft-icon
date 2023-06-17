@@ -22,7 +22,7 @@
     ]
   },
   "mixins": [
-    "classic-minecraft-icon.mixins.json"
+    "classic_minecraft_icon.mixins.json"
   ],
 
   "depends": {

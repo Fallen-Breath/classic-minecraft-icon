@@ -21,7 +21,7 @@
 package me.fallenbreath.classicminecrafticon;
 
 //#if FORGE
-//$$ @net.minecraftforge.fml.common.Mod("classic-minecraft-icon")
+//$$ @net.minecraftforge.fml.common.Mod("classic_minecraft_icon")
 //#endif
 public class ClassicMinecraftIconMod
 		//#if FABRIC

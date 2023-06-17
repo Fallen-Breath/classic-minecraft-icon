@@ -60,7 +60,7 @@ loom {
 
 	if (mod_brand == 'forge') {
 		forge {
-			mixinConfigs = ["classic-minecraft-icon.mixins.json"]
+			mixinConfigs = ["classic_minecraft_icon.mixins.json"]
 		}
 	}
 }
