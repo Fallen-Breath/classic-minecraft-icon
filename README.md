@@ -15,7 +15,7 @@ This change affects all Minecraft versions, not just 1.20, which breaks how Mine
 
 Here's a simple client-side mod to revert that change. Yes, the classic Minecraft icon is back!
 
-This mod is client-side only and requires only the Fabric loader. It supports all Minecraft versions since 1.14
+This mod is client-side only and requires no extra dependency. It supports all Minecraft versions since 1.14 (fabric) or since 1.15 (forge)
 
 | Icon File          | Source                                                                                                                                 | 
 |--------------------|----------------------------------------------------------------------------------------------------------------------------------------| 
