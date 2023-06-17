@@ -20,12 +20,19 @@
 
 package me.fallenbreath.classicminecrafticon;
 
-import net.fabricmc.api.ModInitializer;
-
-public class ClassicMinecraftIconMod implements ModInitializer
+//#if FORGE
+//$$ @net.minecraftforge.fml.common.Mod("classic-minecraft-icon")
+//#endif
+public class ClassicMinecraftIconMod
+		//#if FABRIC
+		implements net.fabricmc.api.ModInitializer
+		//#endif
 {
-	@Override
-	public void onInitialize()
+	//#if FABRIC
+	@Override public void onInitialize()
+	//#elseif FORGE
+	//$$ public ClassicMinecraftIconMod()
+	//#endif
 	{
 		ClassicMinecraftIconStorage.init();
 	}
