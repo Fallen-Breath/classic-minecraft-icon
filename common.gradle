@@ -49,13 +49,16 @@ String MOD_ICON_PATH = 'assets/classicminecrafticon/mod_icon.png'
 String MIXIN_CONFIG_PATH = 'classic_minecraft_icon.mixins.json'
 String LANG_DIR = 'assets/classicminecrafticon/lang'
 JavaVersion JAVA_COMPATIBILITY
-if (mcVersion >= 11800) {
+if (mcVersion >= 12005) {
+	JAVA_COMPATIBILITY = JavaVersion.VERSION_21
+} else if (mcVersion >= 11800) {
 	JAVA_COMPATIBILITY = JavaVersion.VERSION_17
 } else if (mcVersion >= 11700) {
 	JAVA_COMPATIBILITY = JavaVersion.VERSION_16
 } else {
 	JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
 }
+JavaVersion MIXIN_COMPATIBILITY_LEVEL = JAVA_COMPATIBILITY
 
 loom {
 	runConfigs.client {
@@ -125,7 +128,7 @@ processResources {
 	}
 
 	filesMatching(MIXIN_CONFIG_PATH) {
-		filter { s -> s.replace('{{COMPATIBILITY_LEVEL}}', "JAVA_${JAVA_COMPATIBILITY.ordinal() + 1}") }
+		filter { s -> s.replace('{{COMPATIBILITY_LEVEL}}', "JAVA_${MIXIN_COMPATIBILITY_LEVEL.ordinal() + 1}") }
 	}
 
 	if (mod_brand == 'forge') {
@@ -146,6 +149,10 @@ yamlang {
 tasks.withType(JavaCompile).configureEach {
 	options.encoding = "UTF-8"
 	options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
+	if (JAVA_COMPATIBILITY <= JavaVersion.VERSION_1_8) {
+		// suppressed "source/target value 8 is obsolete and will be removed in a future release"
+		options.compilerArgs << '-Xlint:-options'
+	}
 }
 
 java {
