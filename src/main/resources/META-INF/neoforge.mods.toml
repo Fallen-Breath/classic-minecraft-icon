@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[31,)"
+loaderVersion = "[1,)"
 license = "LGPLv3"
 issueTrackerURL = "https://github.com/Fallen-Breath/fabric-mod-template/issues"
 
@@ -7,12 +7,12 @@ issueTrackerURL = "https://github.com/Fallen-Breath/fabric-mod-template/issues"
 modId = "${id}"
 version = "${version}"
 displayName = "${name}"
-displayURL = "https://github.com/Fallen-Breath/classic-minecraft-icon"
+displayURL = "https://github.com/Fallen-Breath/fabric-mod-template"
 authors = "Fallen_Breath"
 description = '''
-Bring back the classic crafting table window icon of Minecraft
+Template for my fabric mods
 '''
-logoFile = "mod_icon.png"
+logoFile = "icon.png"
 
 [[dependencies."${id}"]]
 modId = "minecraft"
@@ -20,3 +20,6 @@ mandatory = true
 versionRange = "${minecraft_dependency}"
 ordering = "NONE"
 side = "BOTH"
+
+[[mixins]]
+config = "${id}.mixins.json"
