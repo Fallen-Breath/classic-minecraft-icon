@@ -40,6 +40,16 @@ jobs:
       target_subproject: ${{ github.event.inputs.target_subproject }}
 
   # ensure the input release tag is valid
+  validate_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get github release information
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: cardinalby/git-get-release-action@1.2.5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag: ${{ github.event.inputs.target_release_tag }}
 
   build:
     uses: ./.github/workflows/build.yml
@@ -71,27 +81,43 @@ jobs:
           name: build-artifacts
           path: build-artifacts
 
+      - name: Get github release information
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        id: get_release
+        uses: cardinalby/git-get-release-action@1.2.5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag: ${{ github.event.inputs.target_release_tag }}
+
+      - name: Generate publish related information
+        id: release_info
+        run: |
+          if [ $GITHUB_EVENT_NAME == 'release' ]
+          then
+              # Leave an empty value here, so Kir-Antipov/mc-publish will infer the tag from the action context
+              echo "tag_name=" >> $GITHUB_OUTPUT
+          elif [ $GITHUB_EVENT_NAME == 'workflow_dispatch' ]
+          then
+              echo "tag_name=${{ github.event.inputs.target_release_tag }}" >> $GITHUB_OUTPUT
+          else
+              echo Unknown github event name $GITHUB_EVENT_NAME
+              exit 1
+          fi
+
       - name: Read common properties
         id: properties_g
-        uses: christian-draeger/read-properties@1.1.1
+        uses: BrycensRanch/read-properties-action@v1
         with:
-          path: gradle.properties
-          properties: 'mod_name mod_version'
+          file: gradle.properties
+          all: true
 
       - name: Read version-specific properties
         id: properties_v
-        uses: christian-draeger/read-properties@1.1.1
+        uses: BrycensRanch/read-properties-action@v1
         with:
-          path: ${{ format('versions/{0}/gradle.properties', matrix.subproject) }}
-          properties: 'minecraft_version game_versions'
-
-      - name: Fix game version
-        id: game_versions
-        run: |
-          # Fixed \n in game_versions isn't parsed by christian-draeger/read-properties as a line separator
-          echo 'value<<EOF' >> $GITHUB_OUTPUT
-          echo -e "${{ steps.properties_v.outputs.game_versions }}" >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
+          file: ${{ format('versions/{0}/gradle.properties', matrix.subproject) }}
+          all: true
 
       - name: Prepare file information
         id: file_info

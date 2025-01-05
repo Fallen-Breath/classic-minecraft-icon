@@ -1,14 +1,14 @@
 plugins {
 	id 'maven-publish'
 	id 'com.github.hierynomus.license' version '0.16.1' apply false
-	id "dev.architectury.loom" version "1.6-SNAPSHOT" apply false
+    id 'dev.architectury.loom' version '1.7-SNAPSHOT' apply false
 
 	// https://github.com/ReplayMod/preprocessor
 	// https://github.com/Fallen-Breath/preprocessor
 	id 'com.replaymod.preprocess' version 'ce1aeb2b'
 
 	// https://github.com/Fallen-Breath/yamlang
-	id 'me.fallenbreath.yamlang' version '1.3.1' apply false
+	id 'me.fallenbreath.yamlang' version '1.4.0' apply false
 }
 
 preprocess {
@@ -23,8 +23,8 @@ preprocess {
 	def mc1201_fabric = createNode('1.20.1-fabric', 1_20_01, '')
 	def mc1202_fabric = createNode('1.20.2-fabric', 1_20_02, '')
 	def mc1204_fabric = createNode('1.20.4-fabric', 1_20_04, '')
-	def mc1206_fabric = createNode('1.20.6-fabric', 1_20_04, '')
-    def mc121_fabric  = createNode('1.21-fabric'  , 1_21_00, '')
+	def mc1206_fabric = createNode('1.20.6-fabric', 1_20_06, '')
+	def mc1211_fabric = createNode('1.21.1-fabric', 1_21_01, '')
 
 	def mc115_forge   = createNode('1.15.2-forge' , 1_15_02, '')
 	def mc116_forge   = createNode('1.16.5-forge' , 1_16_05, '')
@@ -36,7 +36,11 @@ preprocess {
 	def mc1201_forge  = createNode('1.20.1-forge' , 1_20_01, '')
 	def mc1202_forge  = createNode('1.20.2-forge' , 1_20_02, '')
 	def mc1204_forge  = createNode('1.20.4-forge' , 1_20_04, '')
-    // Architectury Loom does not support mc1.20.5+ forge at all
+	def mc1206_forge  = createNode('1.20.6-forge' , 1_20_06, '')
+	def mc1211_forge  = createNode('1.21.1-forge' , 1_21_01, '')
+
+	def mc1206_neoforge = createNode('1.20.6-neoforge', 1_20_06, '')
+	def mc1211_neoforge = createNode('1.21.1-neoforge', 1_21_01, '')
 
 	mc114_fabric.link(mc115_fabric, null)
 	mc115_fabric.link(mc116_fabric, null)
@@ -49,7 +53,7 @@ preprocess {
 	mc1201_fabric.link(mc1202_fabric, null)
 	mc1202_fabric.link(mc1204_fabric, null)
     mc1204_fabric.link(mc1206_fabric, null)
-    mc1206_fabric.link(mc121_fabric, null)
+    mc1206_fabric.link(mc1211_fabric, null)
 
 	mc115_fabric.link(mc115_forge, null)
 	mc116_fabric.link(mc116_forge, null)
@@ -61,6 +65,11 @@ preprocess {
 	mc1201_fabric.link(mc1201_forge, null)
 	mc1202_fabric.link(mc1202_forge, null)
 	mc1204_fabric.link(mc1204_forge, null)
+	mc1206_fabric.link(mc1206_forge, null)
+	mc1211_fabric.link(mc1211_forge , null)
+
+    mc1206_fabric.link(mc1206_neoforge, null)
+    mc1211_fabric.link(mc1211_neoforge, null)
 }
 
 tasks.register('buildAndGather') {
