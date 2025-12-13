@@ -21,8 +21,8 @@
 package me.fallenbreath.classicminecrafticon.mixins;
 
 import me.fallenbreath.classicminecrafticon.ClassicMinecraftIconStorage;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.resource.InputSupplier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.packs.resources.IoSupplier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -35,18 +35,18 @@ import java.io.InputStream;
  * - {@link MinecraftClientMixin} in subproject 1.15.2-fabric for implementation for mc (~, 1.19.3)
  * - {@link IconsMixin} in subproject 1.20.1-fabric for implementation for mc [1.20, ~)
  */
-@Mixin(MinecraftClient.class)
+@Mixin(Minecraft.class)
 public abstract class MinecraftClientMixin
 {
 	@ModifyArg(
 			method = "<init>",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/Window;setIcon(Lnet/minecraft/resource/InputSupplier;Lnet/minecraft/resource/InputSupplier;)V"
+					target = "Lcom/mojang/blaze3d/platform/Window;setIcon(Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)V"
 			),
 			index = 0
 	)
-	private InputSupplier<InputStream> bringTheClassicCraftingTableIconBack_general16x(InputSupplier<InputStream> icon16)
+	private IoSupplier<InputStream> bringTheClassicCraftingTableIconBack_general16x(IoSupplier<InputStream> icon16)
 	{
 		return ClassicMinecraftIconStorage.getResource("icon_16x16.png");
 	}
@@ -55,11 +55,11 @@ public abstract class MinecraftClientMixin
 			method = "<init>",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/Window;setIcon(Lnet/minecraft/resource/InputSupplier;Lnet/minecraft/resource/InputSupplier;)V"
+					target = "Lcom/mojang/blaze3d/platform/Window;setIcon(Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)V"
 			),
 			index = 1
 	)
-	private InputSupplier<InputStream> bringTheClassicCraftingTableIconBack_general32x(InputSupplier<InputStream> icon32)
+	private IoSupplier<InputStream> bringTheClassicCraftingTableIconBack_general32x(IoSupplier<InputStream> icon32)
 	{
 		return ClassicMinecraftIconStorage.getResource("icon_32x32.png");
 	}
@@ -68,10 +68,10 @@ public abstract class MinecraftClientMixin
 			method = "<init>",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/MacWindowUtil;setApplicationIconImage(Lnet/minecraft/resource/InputSupplier;)V"
+					target = "Lcom/mojang/blaze3d/platform/MacosUtil;loadIcon(Lnet/minecraft/server/packs/resources/IoSupplier;)V"
 			)
 	)
-	private InputSupplier<InputStream> bringTheClassicCraftingTableIconBack_mac(InputSupplier<InputStream> iconMac)
+	private IoSupplier<InputStream> bringTheClassicCraftingTableIconBack_mac(IoSupplier<InputStream> iconMac)
 	{
 		return ClassicMinecraftIconStorage.getResource("minecraft.icns");
 	}

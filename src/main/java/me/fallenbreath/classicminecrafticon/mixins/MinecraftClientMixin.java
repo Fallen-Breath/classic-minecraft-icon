@@ -21,7 +21,7 @@
 package me.fallenbreath.classicminecrafticon.mixins;
 
 import me.fallenbreath.classicminecrafticon.ClassicMinecraftIconStorage;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -34,7 +34,7 @@ import java.io.InputStream;
  * - {@link MinecraftClientMixin} in subproject 1.19.3-fabric for implementation for mc [1.19.3, 1.20)
  * - {@link IconsMixin} in subproject 1.20.1-fabric for implementation for mc [1.20, ~)
  */
-@Mixin(MinecraftClient.class)
+@Mixin(Minecraft.class)
 public abstract class MinecraftClientMixin
 {
 	@ModifyArg(
@@ -45,7 +45,7 @@ public abstract class MinecraftClientMixin
 			//#endif
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
+					target = "Lcom/mojang/blaze3d/platform/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
 			),
 			index = 0
 	)
@@ -62,7 +62,7 @@ public abstract class MinecraftClientMixin
 			//#endif
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
+					target = "Lcom/mojang/blaze3d/platform/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
 			),
 			index = 1
 	)
@@ -76,7 +76,7 @@ public abstract class MinecraftClientMixin
 	//$$ 		method = "<init>",
 	//$$ 		at = @At(
 	//$$ 				value = "INVOKE",
-	//$$ 				target = "Lnet/minecraft/client/util/MacWindowUtil;setApplicationIconImage(Ljava/io/InputStream;)V"
+	//$$ 				target = "Lcom/mojang/blaze3d/platform/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"
 	//$$ 		)
 	//$$ )
 	//$$ private InputStream bringTheClassicCraftingTableIconBack_mac(InputStream iconMac)

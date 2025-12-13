@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 //#if MC >= 11903
-//$$ import net.minecraft.resource.InputSupplier;
+//$$ import net.minecraft.server.packs.resources.IoSupplier;
 //#endif
 
 public class ClassicMinecraftIconStorage
@@ -83,7 +83,7 @@ public class ClassicMinecraftIconStorage
 	}
 
 	//#if MC >= 11903
-	//$$ public static InputSupplier<InputStream> getResource(String path)
+	//$$ public static IoSupplier<InputStream> getResource(String path)
 	//#else
 	public static InputStream getResource(String path)
 	//#endif
@@ -102,7 +102,7 @@ public class ClassicMinecraftIconStorage
 	}
 
 	//#if MC >= 12000
-	//$$ public static List<InputSupplier<InputStream>> getAllPngResources()
+	//$$ public static List<IoSupplier<InputStream>> getAllPngResources()
 	//$$ {
 	//$$ 	init();
 	//$$ 	return PNG_PATHS.stream().
