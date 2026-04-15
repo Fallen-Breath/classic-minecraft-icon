@@ -20,24 +20,40 @@
 
 package me.fallenbreath.classicminecrafticon;
 
+//#if MC >= 1.18.2
+//$$ import com.mojang.logging.LogUtils;
+//$$ import org.slf4j.Logger;
+//#else
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-//#if FORGE
-//$$ @net.minecraftforge.fml.common.Mod("classic_minecraft_icon")
 //#endif
+
+@net.minecraftforge.fml.common.Mod(ClassicMinecraftIconMod.MOD_ID)
+@net.neoforged.fml.common.Mod(ClassicMinecraftIconMod.MOD_ID)
 public class ClassicMinecraftIconMod
-		//#if FABRIC
-		implements net.fabricmc.api.ModInitializer
-		//#endif
 {
-	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Logger LOGGER =
+			//#if MC >= 11802
+			//$$ LogUtils.getLogger();
+			//#else
+			LogManager.getLogger();
+			//#endif
+
+	public static final String MOD_ID = "classic_minecraft_icon";
 
 	//#if FABRIC
-	@Override public void onInitialize()
-	//#elseif FORGE
+	public void fabricInit()
+	{
+		this.commonInit();
+	}
+	//#elseif FORGE_LIKE
 	//$$ public ClassicMinecraftIconMod()
+	//$$ {
+	//$$ 	this.commonInit();
+	//$$ }
 	//#endif
+
+	private void commonInit()
 	{
 		ClassicMinecraftIconStorage.init();
 	}
