@@ -95,6 +95,11 @@ if (mcVersion >= 260000) {
 }
 JavaVersion MIXIN_COMPATIBILITY_LEVEL = JAVA_COMPATIBILITY
 
+// FIXME: forge (at least 26.1.2-64.0.1) for mc26.1 does not recognize mixin compatibility level JAVA_25 yet
+if (MIXIN_COMPATIBILITY_LEVEL >= JavaVersion.VERSION_25) {
+	MIXIN_COMPATIBILITY_LEVEL = JavaVersion.VERSION_21
+}
+
 loom {
 	def commonVmArgs = ['-Dmixin.debug.export=true', '-Dmixin.debug.countInjections=true']
 	runConfigs.client {
@@ -149,7 +154,6 @@ version = fullProjectVersion
 // See https://youtrack.jetbrains.com/issue/IDEA-296490
 // if IDEA complains about "Cannot resolve resource filtering of MatchingCopyAction" and you want to know why
 processResources {
-
 	Set<String> good_files = [] as Set
 	Map<String, String> all_files = [:]  // path -> brand
 	[
