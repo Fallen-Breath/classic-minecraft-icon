@@ -41,19 +41,13 @@ public class ClassicMinecraftIconMod
 
 	public static final String MOD_ID = "classic_minecraft_icon";
 
-	//#if FABRIC
-	public void fabricInit()
+	public static void fabricInit()
 	{
-		this.commonInit();
+		//noinspection InstantiationOfUtilityClass
+		new ClassicMinecraftIconMod();
 	}
-	//#elseif FORGE_LIKE
-	//$$ public ClassicMinecraftIconMod()
-	//$$ {
-	//$$ 	this.commonInit();
-	//$$ }
-	//#endif
 
-	private void commonInit()
+	public ClassicMinecraftIconMod()
 	{
 		ClassicMinecraftIconStorage.init();
 	}
