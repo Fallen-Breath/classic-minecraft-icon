@@ -48,7 +48,8 @@ public class ClassicMinecraftIconStorage
 			return;
 		}
 
-		// Minecraft 26.3+ expects icons in reverse order and no longer uses a separate macOS icon
+		// Minecraft 26.3-snapshot-4 and later expects icons in reverse order
+		// and no longer uses a separate macOS icon
 		//#if MC >= 260300
 		//$$ loadResource("icon_256x256.png", true);
 		//$$ loadResource("icon_128x128.png", true);
