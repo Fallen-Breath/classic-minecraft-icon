@@ -46,9 +46,11 @@ public abstract class IconsMixin
 		cir.setReturnValue(ClassicMinecraftIconStorage.getAllPngResources());
 	}
 
+	//#if MC <= 260200
 	@Inject(method = "getMacIcon", at = @At("HEAD"), cancellable = true)
 	private void bringTheClassicCraftingTableIconBack_mac( CallbackInfoReturnable<IoSupplier<InputStream>> cir)
 	{
 		cir.setReturnValue(ClassicMinecraftIconStorage.getResource("minecraft.icns"));
 	}
+	//#endif
 }
